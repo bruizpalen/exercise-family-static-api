@@ -35,7 +35,7 @@ class FamilyStructure:
     def update_member(self, id, updated_member):
         for member in self._members:
             if member["id"] == id:
-                member.update(updated_member)
+                member["name"] = updated_member
                 return print('Member successfully removed')
         return print('There is not that member in the family')
 
