@@ -15,11 +15,29 @@ class FamilyStructure:
 
         # example list of members
         self._members = [
-        #     {
-        #     "id": self._generateId(),
-        #     "first_name": "John",
-        #     "last_name": last_name
-        # }
+            {
+            "id": self._generateId(),
+            "first_name": 'John',
+            "last_name": last_name,
+            "age": 33,
+            "lucky numbers": [7, 13, 22]
+        },
+                    {
+            "id": self._generateId(),
+            "first_name": 'Jane',
+            "last_name": last_name,
+            "age": 35,
+            "lucky numbers": [10, 14, 3]
+        },
+                    {
+            "id": self._generateId(),
+            "first_name": 'Jimmy',
+            "last_name": last_name,
+            "age": 5,
+            "lucky numbers": [1]
+        },
+
+
         ]
 
     # read-only: Use this method to generate random members ID's when adding members into the list
@@ -27,10 +45,11 @@ class FamilyStructure:
         return randint(0, 99999999)
 
     def add_member(self, member):
-        # fill this method and update the return
-        member_id = self._generateId()
-        self._members.append({"id": member_id, "name": member})
-        pass
+            member_id = self._generateId()
+            member["id"] = member_id
+            member["last_name"] = self.last_name
+            self._members.append(member)
+            return {"message": "Member successfully added"}
 
     def update_member(self, id, updated_member):
         for member in self._members:
@@ -50,7 +69,9 @@ class FamilyStructure:
 
     def get_member(self, id):
         # fill this method and update the return
+        print(type(id))
         for member in self._members:
+            
             if member["id"] == id:
                 return member["name"]
         return print('There is not that member in the family')
