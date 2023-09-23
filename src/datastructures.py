@@ -20,21 +20,21 @@ class FamilyStructure:
             "first_name": 'John',
             "last_name": last_name,
             "age": 33,
-            "lucky numbers": [7, 13, 22]
+            "lucky_numbers": [7, 13, 22]
         },
                     {
             "id": self._generateId(),
             "first_name": 'Jane',
             "last_name": last_name,
             "age": 35,
-            "lucky numbers": [10, 14, 3]
+            "lucky_numbers": [10, 14, 3]
         },
                     {
             "id": self._generateId(),
             "first_name": 'Jimmy',
             "last_name": last_name,
             "age": 5,
-            "lucky numbers": [1]
+            "lucky_numbers": [1]
         },
 
 
@@ -49,33 +49,37 @@ class FamilyStructure:
             member["id"] = member_id
             member["last_name"] = self.last_name
             self._members.append(member)
-            return {"message": "Member successfully added"}
+            return member
 
     def update_member(self, id, updated_member):
         for member in self._members:
             if member["id"] == id:
-                member["name"] = updated_member
-                return print('Member successfully removed')
-        return print('There is not that member in the family')
+                member["last_name"] = self.last_name
+                member["first_name"] = updated_member.get("first_name", member["first_name"])
+                member["age"] = updated_member.get("age", member["age"])
+                member["lucky_numbers"] = updated_member.get("lucky_numbers", member["lucky_numbers"])
+                return member
+        return ('There is not that member in the family')
 
     def delete_member(self, id):
         # fill this method and update the return
         for member in self._members:
             if member["id"] == id:
                 self._members.remove(member)
-                return print('Member successfully removed')
-        return print('There is not that member in the family')
+                return ('Member successfully removed')
+        return ('There is not that member in the family')
         
 
     def get_member(self, id):
         # fill this method and update the return
-        print(type(id))
         for member in self._members:
             
             if member["id"] == id:
-                return member["name"]
+                return member["first_name"]
         return print('There is not that member in the family')
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
+        for member in self._members:
+            print(member["id"])
         return self._members
